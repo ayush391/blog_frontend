@@ -1,28 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import FormLabel from '@mui/material/FormLabel'
-import FormGroup from '@mui/material/FormGroup'
-import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import InputAdornment from '@mui/material/InputAdornment'
-import AccountCircle from '@mui/icons-material/AccountCircleRounded'
-import PasswordRounded from '@mui/icons-material/PasswordRounded'
 import CardHeader from '@mui/material/CardHeader'
-import Avatar from '@mui/material/Avatar'
-import IconButton from '@mui/material/IconButton'
-
 
 const bg = "https://source.unsplash.com/random/1280x720?purple"
 
 const Login = () => {
+    const [userId, setUserId] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleUserId = (e) => {
+        setUserId(e.target.value)
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const user = { id: userId, password: password }
+        const url = import.meta.env.VITE_BASE_URL + '/user/login'
+        const response = await Axios.post(url, user,)
+        console.log(response)
+    }
     return (
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Container maxWidth='xs'>
@@ -34,9 +41,9 @@ const Login = () => {
                             sx={{ textAlign: 'center' }}
                         />
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            {/* <AccountCircle fontSize='medium' sx={{ marginX: '10px' }}></AccountCircle> */}
                             <TextField
-                                id="id"
+                                onChange={handleUserId}
+                                value={userId}
                                 label="User ID"
                                 variant='outlined'
                                 type='text'
@@ -48,9 +55,9 @@ const Login = () => {
                         </Box>
 
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            {/* <PasswordRounded fontSize='medium' sx={{ marginX: '10px' }}></PasswordRounded> */}
                             <TextField
-                                id="id"
+                                onChange={handlePassword}
+                                value={password}
                                 label="Password"
                                 variant='outlined'
                                 type='password'
@@ -62,7 +69,7 @@ const Login = () => {
 
                             </TextField>
                         </Box>
-                        <Button disableElevation fullWidth variant='contained' color="secondary" sx={{ borderRadius: '20px', marginTop: '2rem' }}>
+                        <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' color="secondary" sx={{ borderRadius: '20px', marginTop: '2rem' }}>
                             Login
                         </Button>
                         {/* <FormHelperText></FormHelperText> */}
