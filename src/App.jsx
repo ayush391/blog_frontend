@@ -1,6 +1,10 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import Login from "./pages/Login";
+
+import { HashRouter, Route, Routes } from "react-router-dom";
+
 import './App.css'
+import Dashboard from "./pages/Dashboard";
 
 
 const darkTheme = createTheme({
@@ -14,7 +18,12 @@ function App() {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <Login></Login>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </HashRouter>
       </ThemeProvider>
     </>
   )
