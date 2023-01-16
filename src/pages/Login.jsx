@@ -78,7 +78,7 @@ const Login = () => {
 
                             </TextField>
                         </Box>
-                        <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' color="secondary" sx={{ borderRadius: '20px', marginTop: '2rem' }}>
+                        <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' sx={{ borderRadius: '20px', marginTop: '2rem' }}>
                             Login
                         </Button>
                     </CardContent>
