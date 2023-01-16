@@ -39,7 +39,7 @@ const Login = () => {
         console.log(response)
     }
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: '100vh' }}>
             <Header></Header>
             <Container maxWidth='xs'>
                 <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1rem', borderRadius: '20px' }}>
@@ -84,7 +84,7 @@ const Login = () => {
                     </CardContent>
                 </Card>
             </Container>
-            <Box component='img' src={bg} sx={{ display: { xs: 'none', lg: 'block' }, width: '80vw', height: '100vh', overflow: 'hidden', backgroundPosition: '50% 50%' }}>
+            <Box component='img' src={bg} sx={{ display: { xs: 'none', lg: 'block' }, width: '80vw', height: '100%', overflow: 'hidden', backgroundPosition: '50% 50%' }}>
 
             </Box>
         </Box >
