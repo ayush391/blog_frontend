@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
@@ -13,13 +12,9 @@ import CardHeader from '@mui/material/CardHeader'
 import bg from '../assets/bg_login.jpg'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
-const Header = () => (
-    <Helmet>
-        <title>Login - Blog App</title>
-    </Helmet>
-)
 
 const Login = () => {
+
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
 
@@ -38,9 +33,10 @@ const Login = () => {
         const response = await Axios.post(url, user,)
         console.log(response)
     }
+    useEffect(() => { document.title = 'Home - Blog App' }, [])
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: '100vh' }}>
-            <Header></Header>
             <Container maxWidth='xs'>
                 <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1rem', borderRadius: '20px' }}>
                     <CardContent>
@@ -84,9 +80,8 @@ const Login = () => {
                     </CardContent>
                 </Card>
             </Container>
-            <Box component='img' src={bg} sx={{ display: { xs: 'none', lg: 'block' }, width: '80vw', height: '100%', overflow: 'hidden', backgroundPosition: '50% 50%' }}>
+            <Box component='img' src={bg} sx={{ display: { xs: 'none', lg: 'block' }, width: '80vw', height: '100%', overflow: 'hidden', backgroundPosition: '50% 50%' }} />
 
-            </Box>
         </Box >
     )
 }

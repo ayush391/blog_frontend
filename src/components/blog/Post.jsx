@@ -20,7 +20,7 @@ const Post = (props) => {
             <Box sx={{ padding: '0.1rem', display: 'flex', flexDirection: 'column' }}>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: 'red' }} aria-label="recipe">
+                        <Avatar sx={{ bgcolor: 'violet' }} aria-label="recipe">
                             {props.userId[0].toUpperCase()}
                         </Avatar>
                     }
@@ -31,11 +31,11 @@ const Post = (props) => {
                     }}
                 />
 
-                <CardContent sx={{ display: { xs: 'none', xs: 'block', } }}>
+                <CardContent >
                     <Typography variant='body1'>
                         {props.content.slice(0, 150) + '...'}
                     </Typography>
-                    <Typography variant='caption' sx={{ color: '#00000095' }}>
+                    <Typography variant='caption' >
                         Sept 24, 2022
                     </Typography>
                 </CardContent>
@@ -43,9 +43,11 @@ const Post = (props) => {
             <CardMedia
                 component='img'
                 image={props.img ? props.img : default_blog_img}
+
                 sx={{
                     display: { xs: 'none', sm: 'block' },
-                    objectFit: 'cover',
+                    width: '250px',
+                    // objectFit: 'cover',
 
                 }}
             />

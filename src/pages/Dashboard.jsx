@@ -1,17 +1,12 @@
 import { Card, Container, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import Post from '../components/blog/Post'
 
 
-const Header = () => (
-    <Helmet>
-        <title>Dashboard - Blog App</title>
-    </Helmet>
-)
-
 const Dashboard = () => {
+
     const [blogs, setBlogs] = useState([])
     const fetchAllBlogs = async () => {
         const url = import.meta.env.VITE_BASE_URL + '/blog/fetchall'
@@ -19,9 +14,11 @@ const Dashboard = () => {
         setBlogs(response.data)
     }
     useEffect(() => { fetchAllBlogs() }, [])
+
+    useEffect(() => { document.title = 'Home - Blog App' }, [])
+
     return (
         <Container maxWidth='md'>
-            <Header></Header>
 
             {blogs.map((blog) => {
                 return (
