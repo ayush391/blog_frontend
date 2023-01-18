@@ -5,7 +5,7 @@ const BlogPage = () => {
     return (
         <Container maxWidth='sm'>
 
-            <Box>
+            <Box marginBottom={2}>
                 <Typography variant='h4' fontWeight='900'>
                     Ukraine War, 15 January 2023
                 </Typography>
@@ -14,7 +14,7 @@ const BlogPage = () => {
                 </Typography>
             </Box>
             <Box>
-                <Typography gutterBottom lineHeight='1.6rem'>
+                <Typography gutterBottom lineHeight='1.5rem'>
                     Let me start with some more thoughts and analysis of what’s going on in Moscow — and St. Petersburg — these days. It’s going to become obvious ‘why’, later on.
 
                     I am still finding commentary like ‘Putin is fighting a long war’, ‘Putin is fighting a war for the sake of…’ this and that, and similar for ‘amusing’, but pointless.

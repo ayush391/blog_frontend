@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/common/Navbar";
 import BlogPage from "./components/blog/BlogPage";
+import AddBlog from "./pages/AddBlog";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="" element={<Dashboard />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/blog" element={<BlogPage />}></Route>
+            <Route path="/addblog" element={<AddBlog />}></Route>
           </Routes>
         </HashRouter>
       </ThemeProvider>

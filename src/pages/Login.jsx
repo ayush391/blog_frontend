@@ -45,35 +45,31 @@ const Login = () => {
                             subheader="to post and view blogs"
                             sx={{ textAlign: 'center' }}
                         />
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <TextField
-                                onChange={handleUserId}
-                                value={userId}
-                                label="User ID"
-                                variant='outlined'
-                                type='text'
-                                margin='normal'
-                                color='secondary'
-                                fullWidth
+                        <TextField
+                            onChange={handleUserId}
+                            value={userId}
+                            label="User ID"
+                            variant='outlined'
+                            type='text'
+                            margin='normal'
+                            color='secondary'
+                            fullWidth
 
-                            />
-                        </Box>
+                        />
 
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <TextField
-                                onChange={handlePassword}
-                                value={password}
-                                label="Password"
-                                variant='outlined'
-                                type='password'
-                                margin='normal'
-                                color='secondary'
-                                fullWidth
+                        <TextField
+                            onChange={handlePassword}
+                            value={password}
+                            label="Password"
+                            variant='outlined'
+                            type='password'
+                            margin='normal'
+                            color='secondary'
+                            fullWidth
 
-                            >
+                        >
 
-                            </TextField>
-                        </Box>
+                        </TextField>
                         <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' sx={{ borderRadius: '20px', marginTop: '2rem' }}>
                             Login
                         </Button>

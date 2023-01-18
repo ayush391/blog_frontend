@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Sidebar from './Sidebar';
 import { AccountCircle } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 
 export default function Navbar() {
@@ -35,8 +36,9 @@ export default function Navbar() {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        component={Link}
+                        to='/'
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, textDecoration: 'none' }}
                     >
                         Blog App
                     </Typography>
