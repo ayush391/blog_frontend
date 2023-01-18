@@ -10,6 +10,7 @@ import Button from '@mui/material/Button'
 import CardHeader from '@mui/material/CardHeader'
 
 import bg from '../assets/bg_login.jpg'
+import { loginUser } from '../services/userServices'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
 
@@ -29,9 +30,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = { id: userId, password: password }
-        const url = import.meta.env.VITE_BASE_URL + '/user/login'
-        const response = await Axios.post(url, user,)
-        console.log(response)
+        loginUser(user)
     }
     useEffect(() => { document.title = 'Home - Blog App' }, [])
 

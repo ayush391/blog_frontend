@@ -22,7 +22,7 @@ const Dashboard = () => {
 
             {blogs.map((blog) => {
                 return (
-                    <Post key={blog['_id']} title={blog.blogTitle} userId={blog.userId} content={blog.blogDesc} />
+                    <Post key={blog['_id']} blog={blog} />
                 )
             })}
 

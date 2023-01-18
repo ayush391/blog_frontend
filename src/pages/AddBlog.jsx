@@ -6,14 +6,30 @@ import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, Tex
 
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
+import { postBlog } from '../services/blogServices';
 
-
+const initialBlog = {
+    blogTitle: '',
+    blogImg: '',
+    blogDesc: '',
+}
 
 const AddBlog = () => {
-    const [content, setContent] = useState()
+    const [blog, setBlog] = useState(initialBlog)
+
+    const handleTitle = (e) => {
+        setBlog({ ...blog, blogTitle: e.target.value })
+    }
+    const handleImgUrl = (e) => {
+        setBlog({ ...blog, blogImg: e.target.value })
+    }
 
     const handleChange = (editorContents) => {
-        setContent(editorContents)
+        setBlog({ ...blog, blogDesc: editorContents })
+    }
+
+    const handleSubmit = () => {
+        postBlog(blog)
     }
 
     return (
@@ -26,7 +42,7 @@ const AddBlog = () => {
                         </Avatar>
                     }
                     action={
-                        <Button disableElevation color='secondary' variant='contained' sx={{ borderRadius: '20px', marginTop: '1rem' }}>
+                        <Button onClick={handleSubmit} disableElevation color='secondary' variant='contained' sx={{ borderRadius: '20px', marginTop: '1rem' }}>
                             Post
                         </Button>
                     }
@@ -36,21 +52,34 @@ const AddBlog = () => {
 
                 </CardHeader>
                 <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <TextField label='Title'
+                    <TextField
+                        value={blog.blogTitle}
+                        onChange={handleTitle}
+                        label='Title'
                         type='text'
                         margin='normal'
                         color='secondary'
                         placeholder='Title of the blog'
                         fullWidth />
-                    <TextField label='Image Url'
-                        type='text'
-                        margin='normal'
-                        color='secondary'
-                        placeholder='Paste blog image URL here'
-                        fullWidth />
+                    <Box>
+                        <TextField
+                            value={blog.blogImg}
+                            onChange={handleImgUrl}
+                            label='Image Url'
+                            type='text'
+                            margin='normal'
+                            color='secondary'
+                            placeholder='Paste blog image URL here'
+                            fullWidth />
+                        <Box sx={{ border: '2px dashed grey', borderRadius: '5px' }}>
+                            <Typography textAlign='center' sx={{ color: 'grey', padding: '1rem' }}>
+                                Image Preview
+                            </Typography>
+                        </Box>
+                    </Box>
                     <Box sx={{ marginTop: '1rem', borderRadius: '5px', overflow: 'hidden' }}>
                         <SunEditor placeholder='Start Typing...'
-                            height='100%'
+                            height='400px'
                             onChange={handleChange}
                             setOptions={{ buttonList: buttonList.basic }}
                         />

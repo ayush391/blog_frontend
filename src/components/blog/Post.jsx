@@ -11,7 +11,7 @@ const Post = (props) => {
             <CardMedia
                 component='img'
                 height='200'
-                image={props.img ? props.img : default_blog_img}
+                image={props.blog.blogImg ? props.blog.blogImg : default_blog_img}
                 sx={{
                     display: { xs: 'block', sm: 'none' },
                     objectFit: 'cover',
@@ -21,11 +21,11 @@ const Post = (props) => {
                 <CardHeader
                     avatar={
                         <Avatar sx={{ bgcolor: 'violet' }} aria-label="recipe">
-                            {props.userId[0].toUpperCase()}
+                            {props.blog.userId[0].toUpperCase()}
                         </Avatar>
                     }
-                    title={props.title}
-                    subheader={props.userId}
+                    title={props.blog.blogTitle}
+                    subheader={props.blog.userId}
                     sx={{
                         paddingBottom: '0px'
                     }}
@@ -33,7 +33,10 @@ const Post = (props) => {
 
                 <CardContent >
                     <Typography variant='body1'>
-                        {props.content.slice(0, 150) + '...'}
+                        <div dangerouslySetInnerHTML={{ '__html': props.blog.blogDesc.slice(0, 150) }}>
+
+                        </div>
+                        Read More
                     </Typography>
                     <Typography variant='caption' >
                         Sept 24, 2022
@@ -42,7 +45,7 @@ const Post = (props) => {
             </Box>
             <CardMedia
                 component='img'
-                image={props.img ? props.img : default_blog_img}
+                image={props.blog.blogImg ? props.blog.blogImg : default_blog_img}
 
                 sx={{
                     display: { xs: 'none', sm: 'block' },
