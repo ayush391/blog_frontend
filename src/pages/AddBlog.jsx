@@ -18,7 +18,7 @@ const AddBlog = () => {
 
     return (
         <Container maxWidth="md">
-            <Card sx={{ padding: '1rem' }}>
+            <Card sx={{ padding: '1rem', borderRadius: '20px' }}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="">
@@ -26,14 +26,15 @@ const AddBlog = () => {
                         </Avatar>
                     }
                     action={
-                        <IconButton aria-label="">
-
-                        </IconButton>
+                        <Button disableElevation color='secondary' variant='contained' sx={{ borderRadius: '20px', marginTop: '1rem' }}>
+                            Post
+                        </Button>
                     }
                     title="Add Blog"
                     subheader="Write your heart out"
+                >
 
-                />
+                </CardHeader>
                 <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                     <TextField label='Title'
                         type='text'
@@ -53,11 +54,6 @@ const AddBlog = () => {
                             onChange={handleChange}
                             setOptions={{ buttonList: buttonList.basic }}
                         />
-                    </Box>
-                    <Box>
-                        <Button disableElevation color='secondary' variant='contained' sx={{ borderRadius: '20px', marginTop: '1rem' }}>
-                            Post
-                        </Button>
                     </Box>
                 </CardContent>
             </Card>
