@@ -11,6 +11,7 @@ import CardHeader from '@mui/material/CardHeader'
 
 import bg from '../assets/bg_login.jpg'
 import { loginUser } from '../services/userServices'
+import { useNavigate } from 'react-router-dom'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
 
@@ -18,6 +19,8 @@ const Login = () => {
 
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
 
     const handleUserId = (e) => {
         setUserId(e.target.value)
@@ -30,7 +33,11 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = { id: userId, password: password }
-        loginUser(user)
+        const res = await loginUser(user)
+        if (res) {
+            navigate('/')
+        }
+
     }
     useEffect(() => { document.title = 'Home - Blog App' }, [])
 

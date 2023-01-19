@@ -1,6 +1,4 @@
-import { createTheme } from "@mui/material";
-
-const theme = createTheme({
+const appTheme = {
     palette: {
         primary: {
             light: '#9c7ece',
@@ -14,8 +12,9 @@ const theme = createTheme({
             dark: '#008c74',
             contrastText: '#000',
         },
-        mode: 'dark',
+        mode: 'dark'
     },
-});
+}
 
-export default theme;
+
+export default appTheme;

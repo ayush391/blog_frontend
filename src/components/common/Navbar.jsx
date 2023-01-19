@@ -9,11 +9,17 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Sidebar from './Sidebar';
-import { AccountCircle } from '@mui/icons-material';
+import { AccountCircle, Brightness1Rounded, Brightness5Rounded, DarkMode, LightMode } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useContext } from 'react';
+import AppContext from '../../context/appContext';
 
 
 export default function Navbar() {
+    const context = useContext(AppContext)
+    const { darkMode, toggleDarkMode } = context
+
     const [openSidebar, setOpenSidebar] = React.useState(false)
     const toggleSidebar = () => {
         setOpenSidebar(!openSidebar)
@@ -26,23 +32,34 @@ export default function Navbar() {
                     <IconButton
                         size="large"
                         edge="start"
-                        color="inherit"
+                        color="text.primary"
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
                         onClick={toggleSidebar}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component={Link}
-                        to='/'
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, textDecoration: 'none' }}
+                    <Box component={Link} to='/' sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, textDecoration: 'none' }}
                     >
-                        Blog App
-                    </Typography>
+                        <Typography
+                            variant="h6"
+                            noWrap
 
+                        >
+                            Blog App
+                        </Typography>
+                    </Box>
+
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={toggleDarkMode}
+                        color="inherit"
+                    >
+                        {darkMode ? <LightMode /> : <DarkMode />}
+                    </IconButton>
                     <IconButton
                         size="large"
                         aria-label="account of current user"

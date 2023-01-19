@@ -6,6 +6,10 @@ export const loginUser = async (user) => {
     const url = baseURL + '/user/login'
     const response = await axios.post(url, user)
     console.log(response)
-    localStorage.setItem('jwt_token', response.data)
+    if (response.status === 200) {
+        localStorage.setItem('jwt_token', response.data)
+        return true
+    }
+    return false
 }
 

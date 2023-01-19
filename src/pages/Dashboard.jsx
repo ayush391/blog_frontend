@@ -1,7 +1,8 @@
-import { Card, Container, Typography } from '@mui/material'
+import { Box, Card, Container, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import Post from '../components/blog/Post'
 
 
@@ -22,7 +23,9 @@ const Dashboard = () => {
 
             {blogs.map((blog) => {
                 return (
-                    <Post key={blog['_id']} blog={blog} />
+                    <Box key={blog['_id']} component={Link} to={'/blog/' + blog['_id']} sx={{ textDecoration: 'none' }}>
+                        <Post blog={blog} />
+                    </Box>
                 )
             })}
 

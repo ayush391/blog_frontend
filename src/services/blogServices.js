@@ -14,3 +14,10 @@ export const postBlog = async (blog) => {
     console.log(response)
 }
 
+export const getBlog = async (blogId) => {
+    const url = baseURL + '/blog' + '/blogId' + `/${blogId}`
+    const response = await axios.get(url)
+    console.log(response)
+    return response.data[0]
+}
+
