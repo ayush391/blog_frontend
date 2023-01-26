@@ -21,7 +21,7 @@ const BlogPage = () => {
                 <Typography variant='h4' fontWeight='900'>
                     {blog.blogTitle}
                 </Typography>
-                <Typography variant='caption' sx={{ color: '#FFFFFF80' }}>
+                <Typography variant='caption' color='grey'>
                     {new Date(blog.createdAt).toLocaleString()}
                 </Typography>
                 <Box component='img' src={blog.blogImg}>

@@ -35,6 +35,7 @@ const Login = () => {
         const user = { id: userId, password: password }
         const res = await loginUser(user)
         if (res) {
+
             navigate('/')
         }
 

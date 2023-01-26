@@ -1,7 +1,7 @@
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
 
 import React from 'react'
-import { ArticleRounded, LoginRounded } from '@mui/icons-material';
+import { ArticleRounded, CreateRounded, LoginRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 const Sidebar = (props) => {
@@ -24,6 +24,14 @@ const Sidebar = (props) => {
                                 <ArticleRounded></ArticleRounded>
                             </ListItemIcon>
                             <ListItemText primary='Blogs' />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton component={Link} to='/login'>
+                            <ListItemIcon>
+                                <CreateRounded />
+                            </ListItemIcon>
+                            <ListItemText primary='Write' />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>

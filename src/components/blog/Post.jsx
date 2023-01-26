@@ -1,4 +1,4 @@
-import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box } from '@mui/material'
+import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box, CardActions, Button } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -32,13 +32,13 @@ const Post = (props) => {
                 />
 
                 <CardContent >
-                    <Typography variant='body1'>
-                        <div dangerouslySetInnerHTML={{ '__html': props.blog.blogDesc.slice(0, 150) }}>
+                    <Typography variant='caption'>
+                        <div dangerouslySetInnerHTML={{ '__html': props.blog.blogDesc }}>
 
                         </div>
                         Read More
                     </Typography>
-                    <Typography variant='caption' >
+                    <Typography variant='caption' color='grey'>
                         Sept 24, 2022
                     </Typography>
                 </CardContent>
@@ -54,6 +54,9 @@ const Post = (props) => {
 
                 }}
             />
+            <CardActions>
+                <Button component={Link} to={'/editblog/' + props.blog['_id']}>Edit</Button>
+            </CardActions>
         </Card>
     )
 }

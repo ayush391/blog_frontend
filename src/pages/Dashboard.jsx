@@ -23,7 +23,7 @@ const Dashboard = () => {
 
             {blogs.map((blog) => {
                 return (
-                    <Box key={blog['_id']} component={Link} to={'/blog/' + blog['_id']} sx={{ textDecoration: 'none' }}>
+                    <Box key={blog['_id']} to={'/blog/' + blog['_id']} sx={{ textDecoration: 'none' }}>
                         <Post blog={blog} />
                     </Box>
                 )

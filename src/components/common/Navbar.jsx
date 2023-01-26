@@ -18,7 +18,7 @@ import AppContext from '../../context/appContext';
 
 export default function Navbar() {
     const context = useContext(AppContext)
-    const { darkMode, toggleDarkMode } = context
+    const { user, darkMode, toggleDarkMode } = context
 
     const [openSidebar, setOpenSidebar] = React.useState(false)
     const toggleSidebar = () => {
@@ -69,6 +69,9 @@ export default function Navbar() {
                         color="inherit"
                     >
                         <AccountCircle />
+                        {user ? (
+                            <Typography marginX={1}>{user.id}</Typography>
+                        ) : null}
                     </IconButton>
                     {/* <Menu
                         id="menu-appbar"
