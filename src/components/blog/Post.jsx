@@ -33,13 +33,11 @@ const Post = (props) => {
 
                 <CardContent >
                     <Typography variant='caption'>
-                        <div dangerouslySetInnerHTML={{ '__html': props.blog.blogDesc }}>
-
-                        </div>
+                        {props.blog.blogSummary}
                         Read More
                     </Typography>
-                    <Typography variant='caption' color='grey'>
-                        Sept 24, 2022
+                    <Typography variant='caption' color='grey' display='block' textAlign='right'>
+                        {new Date(props.blog.createdAt).toDateString()}
                     </Typography>
                 </CardContent>
             </Box>

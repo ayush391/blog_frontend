@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from '@mui/material/Container'
 
 import { convertToHTML } from 'draft-convert';
-import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button } from '@mui/material';
+import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button, Snackbar } from '@mui/material';
 
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
@@ -29,6 +29,8 @@ const EditBlog = () => {
         fetchBlog(params.blogId)
     }, [])
 
+
+
     const [blog, setBlog] = useState({})
 
 
@@ -49,13 +51,27 @@ const EditBlog = () => {
         setBlog({ ...blog, blogDesc: editorContents })
     }
 
-    const handleSubmit = () => {
-        console.log(blog)
-        updateBlog(params.blogId, blog)
+    const handleSubmit = async () => {
+        // console.log(blog)
+        const status = await updateBlog(params.blogId, blog)
+        if (status == 200) {
+            handleSnackbarOpen("Changes been saved")
+        }
+        else {
+            handleSnackbarOpen("An error occured")
+        }
+
     }
 
+    //snackbar 
+    const [snackbarOpts, setSnackbarOpts] = useState({ open: false, message: 'Changes Saved' })
 
-
+    const handleSnackbarOpen = (message) => {
+        setSnackbarOpts({ open: true, message })
+    }
+    const handleSnackbarClose = () => {
+        setSnackbarOpts({ ...snackbarOpts, open: false })
+    }
 
     return (
         <Container maxWidth="md">
@@ -131,6 +147,12 @@ const EditBlog = () => {
                     </Box>
                 </CardContent>
             </Card>
+            <Snackbar
+                open={snackbarOpts.open}
+                message={snackbarOpts.message}
+                autoHideDuration={3000}
+                onClose={handleSnackbarClose}
+            />
         </Container>
     )
 }

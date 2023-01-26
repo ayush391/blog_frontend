@@ -21,6 +21,7 @@ export const updateBlog = async (blogId, blog) => {
         }
     }
     const response = await axios.post(url, blog, config)
+    return response.status
 }
 
 export const getBlog = async (blogId) => {
