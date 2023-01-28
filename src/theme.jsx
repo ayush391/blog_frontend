@@ -12,6 +12,18 @@ const appTheme = {
             dark: '#008c74',
             contrastText: '#000',
         },
+        danger: {
+            light: '#F48484',
+            main: '#F55050',
+            dark: '#DC0000',
+            contrastText: '#fff',
+        },
+        warning: {
+            light: '#FFE15D',
+            main: '#FFEA20',
+            dark: '#F49D1A',
+            contrastText: '#fff',
+        },
         mode: 'dark'
     },
 }

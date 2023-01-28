@@ -27,7 +27,7 @@ const Sidebar = (props) => {
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
-                        <ListItemButton component={Link} to='/login'>
+                        <ListItemButton component={Link} to='/addblog'>
                             <ListItemIcon>
                                 <CreateRounded />
                             </ListItemIcon>

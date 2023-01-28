@@ -1,11 +1,27 @@
-import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box, CardActions, Button } from '@mui/material'
+import { Delete, Edit } from '@mui/icons-material'
+import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box, CardActions, Button, Chip } from '@mui/material'
 import React from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import default_blog_img from '../../assets/blog_default.jpg'
+import AppContext from '../../context/appContext'
+import { removeBlog } from '../../services/blogServices'
 
 
 const Post = (props) => {
+    const context = useContext(AppContext)
+    const { handleSnackbarOpen } = context
+    const handleRemove = async () => {
+        const res = await removeBlog(props.blog['_id'])
+        if (res === 200) {
+            handleSnackbarOpen("Blog removed successfully")
+        }
+        else {
+            handleSnackbarOpen("An error occured")
+        }
+    }
+
     return (
         <Card sx={{ display: 'flex', borderRadius: '30px', margin: '1rem', justifyContent: 'space-between', flexDirection: { xs: 'column', sm: 'row' } }}>
             <CardMedia
@@ -34,11 +50,16 @@ const Post = (props) => {
                 <CardContent >
                     <Typography variant='caption'>
                         {props.blog.blogSummary}
-                        Read More
                     </Typography>
-                    <Typography variant='caption' color='grey' display='block' textAlign='right'>
-                        {new Date(props.blog.createdAt).toDateString()}
-                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                        <Chip
+                            label={props.blog.category}
+                            color='secondary'
+                        />
+                        <Typography variant='caption' color='grey'>
+                            {new Date(props.blog.createdAt).toDateString()}
+                        </Typography>
+                    </Box>
                 </CardContent>
             </Box>
             <CardMedia
@@ -52,10 +73,12 @@ const Post = (props) => {
 
                 }}
             />
-            <CardActions>
-                <Button component={Link} to={'/editblog/' + props.blog['_id']}>Edit</Button>
-            </CardActions>
-        </Card>
+            {props.editable ? (<CardActions>
+                <Button component={Link} to={'/editblog/' + props.blog['_id']} color='warning'><Edit />Edit</Button>
+                <Button component={Link} onClick={handleRemove} color='danger'><Delete />Remove</Button>
+            </CardActions>) : null
+            }
+        </Card >
     )
 }
 

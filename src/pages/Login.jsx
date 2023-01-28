@@ -12,10 +12,14 @@ import CardHeader from '@mui/material/CardHeader'
 import bg from '../assets/bg_login.jpg'
 import { loginUser } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import AppContext from '../context/appContext'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
 
 const Login = () => {
+    const context = useContext(AppContext)
+    const { fetchUserData } = context
 
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
@@ -35,7 +39,7 @@ const Login = () => {
         const user = { id: userId, password: password }
         const res = await loginUser(user)
         if (res) {
-
+            fetchUserData()
             navigate('/')
         }
 

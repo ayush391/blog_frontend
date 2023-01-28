@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 // import './App.css'
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Button, createTheme, CssBaseline, Snackbar, ThemeProvider } from "@mui/material";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/common/Navbar";
 import BlogPage from "./components/blog/BlogPage";
@@ -19,7 +19,7 @@ import EditBlog from "./pages/EditBlog";
 function App() {
 
   const context = useContext(AppContext)
-  const { darkMode } = context
+  const { snackbarOpts, handleSnackbarOpen, handleSnackbarClose, darkMode } = context
 
   const currTheme = useMemo(() => {
     return createTheme(
@@ -47,6 +47,12 @@ function App() {
             <Route path="/addblog" element={<AddBlog />}></Route>
             <Route path="/editblog/:blogId" element={<EditBlog />}></Route>
           </Routes>
+          <Snackbar
+            open={snackbarOpts.open}
+            message={snackbarOpts.message}
+            autoHideDuration={3000}
+            onClose={handleSnackbarClose}
+          />
         </HashRouter>
       </ThemeProvider>
     </>

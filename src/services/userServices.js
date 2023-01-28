@@ -15,7 +15,6 @@ export const createUser = async (user) => {
 export const loginUser = async (user) => {
     const url = baseURL + '/user/login'
     const response = await axios.post(url, user)
-    console.log(response)
     if (response.status === 200) {
         localStorage.setItem('jwt_token', response.data.token)
         return true
@@ -31,7 +30,7 @@ export const getUser = async () => {
     }
     const response = await axios.get(url, config)
     if (response.status === 200) {
-        return response.data['user']
+        return response
     }
 }
 

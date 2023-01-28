@@ -69,9 +69,7 @@ export default function Navbar() {
                         color="inherit"
                     >
                         <AccountCircle />
-                        {user ? (
-                            <Typography marginX={1}>{user.id}</Typography>
-                        ) : null}
+                        <Typography marginX={1}>{user.id ? user.id : "Guest"}</Typography>
                     </IconButton>
                     {/* <Menu
                         id="menu-appbar"

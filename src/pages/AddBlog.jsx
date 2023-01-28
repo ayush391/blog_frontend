@@ -2,36 +2,74 @@ import React, { useEffect, useState } from 'react'
 import Container from '@mui/material/Container'
 
 import { convertToHTML } from 'draft-convert';
-import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button } from '@mui/material';
+import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar } from '@mui/material';
 
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
-import { postBlog } from '../services/blogServices';
+import { getCategories, postBlog } from '../services/blogServices';
 
 const initialBlog = {
     blogTitle: '',
     blogImg: '',
+    blogSummary: '',
+    blogCategory: 'General',
     blogDesc: '',
 }
 
 const AddBlog = () => {
     const [blog, setBlog] = useState(initialBlog)
+    const [categories, setCategories] = useState([])
+
+    const fetchCategories = async () => {
+        const response = await getCategories()
+        setCategories(response)
+        console.log(response)
+    }
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
     const handleTitle = (e) => {
-        setBlog({ ...blog, blogTitle: e.target.value })
+        console.log(blog)
+        setBlog((blog) => ({ ...blog, blogTitle: e.target.value }))
+    }
+    const handleSummary = (e) => {
+        console.log('summ Changed')
+        setBlog((blog) => ({ ...blog, blogSummary: e.target.value }))
     }
     const handleImgUrl = (e) => {
-        setBlog({ ...blog, blogImg: e.target.value })
+        console.log(blog)
+        setBlog((blog) => ({ ...blog, blogImg: e.target.value }))
     }
 
+    const handleCategory = (e) => {
+        console.log(blog)
+        setBlog((blog) => ({ ...blog, category: e.target.value }))
+        console.log(blog)
+    }
     const handleChange = (editorContents) => {
-        setBlog({ ...blog, blogDesc: editorContents })
+        console.log(blog)
+        setBlog((blog) => ({ ...blog, blogDesc: editorContents }))
     }
 
     const handleSubmit = () => {
-        postBlog(blog)
+        const status = postBlog(blog)
+        if (status == 200) {
+            handleSnackbarOpen("Changes been saved")
+        }
+        else {
+            handleSnackbarOpen("An error occured")
+        }
     }
 
+    const [snackbarOpts, setSnackbarOpts] = useState({ open: false, message: 'Changes Saved' })
+
+    const handleSnackbarOpen = (message) => {
+        setSnackbarOpts({ open: true, message })
+    }
+    const handleSnackbarClose = () => {
+        setSnackbarOpts({ ...snackbarOpts, open: false })
+    }
     return (
         <Container maxWidth="md">
             <Card sx={{ padding: '1rem', borderRadius: '20px' }}>
@@ -61,31 +99,67 @@ const AddBlog = () => {
                         color='secondary'
                         placeholder='Title of the blog'
                         fullWidth />
-                    <Box>
-                        <TextField
-                            value={blog.blogImg}
-                            onChange={handleImgUrl}
-                            label='Image Url'
-                            type='text'
+                    <TextField
+                        value={blog.blogSummary}
+                        onChange={handleSummary}
+                        label='Summary'
+                        type='text'
+                        margin='normal'
+                        color='secondary'
+                        placeholder='Summary of the blog'
+                        fullWidth
+                        multiline
+                        sx={{ marginTop: '1rem' }}
+                    />
+                    <TextField
+                        value={blog.blogImg}
+                        onChange={handleImgUrl}
+                        label='Image Url'
+                        type='text'
+                        margin='normal'
+                        color='secondary'
+                        placeholder='Paste blog image URL here'
+                        fullWidth />
+
+                    <FormControl sx={{ marginTop: '1rem' }}>
+                        <InputLabel
+                            id='labelCategory'
+                            color='secondary'
+                        >
+                            Category
+                        </InputLabel>
+                        <Select
+                            value={blog.category}
+                            defaultValue='General'
+                            label='Category'
+                            onChange={handleCategory}
                             margin='normal'
                             color='secondary'
-                            placeholder='Paste blog image URL here'
-                            fullWidth />
-                        <Box sx={{ border: '2px dashed grey', borderRadius: '5px' }}>
-                            <Typography textAlign='center' sx={{ color: 'grey', padding: '1rem' }}>
-                                Image Preview
-                            </Typography>
-                        </Box>
-                    </Box>
+                            fullWidth
+                        >
+                            {
+                                categories.map((category, idx) => {
+                                    return (<MenuItem key={idx} value={category.name}>{category.name}</MenuItem>)
+                                })
+                            }
+                        </Select>
+                    </FormControl>
                     <Box sx={{ marginTop: '1rem', borderRadius: '5px', overflow: 'hidden' }}>
                         <SunEditor placeholder='Start Typing...'
                             height='400px'
                             onChange={handleChange}
                             setOptions={{ buttonList: buttonList.basic }}
+                            defaultValue=''
                         />
                     </Box>
                 </CardContent>
             </Card>
+            <Snackbar
+                open={snackbarOpts.open}
+                message={snackbarOpts.message}
+                autoHideDuration={3000}
+                onClose={handleSnackbarClose}
+            />
         </Container>
     )
 }

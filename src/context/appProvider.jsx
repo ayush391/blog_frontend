@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState(true)
     const [user, setUser] = useState({})
 
+
     const toggleDarkMode = () => {
         setDarkMode(!darkMode)
     }
@@ -14,7 +15,10 @@ const AppProvider = ({ children }) => {
     const fetchUserData = async () => {
         if (localStorage.getItem('jwt_token')) {
             const userData = await getUser()
-            setUser(userData)
+            if (userData.status == 200) {
+                setUser(userData.data.user)
+            }
+
         }
 
     }
@@ -23,9 +27,27 @@ const AppProvider = ({ children }) => {
         fetchUserData()
     }, [])
 
+    useEffect(() => {
+        if (user.id) {
+            handleSnackbarOpen("Welcome back " + user.id)
+        }
+    }, [user])
+
+    //snackbar
+    const [snackbarOpts, setSnackbarOpts] = useState({ open: false, message: 'Changes Saved' })
+
+    const handleSnackbarOpen = (message) => {
+        setSnackbarOpts({ open: true, message })
+    }
+    const handleSnackbarClose = () => {
+        setSnackbarOpts({ ...snackbarOpts, open: false })
+    }
 
     return (
-        <AppContext.Provider value={{ darkMode, toggleDarkMode, user, fetchUserData }}>
+        <AppContext.Provider value={{
+            darkMode, toggleDarkMode, user, fetchUserData, snackbarOpts, setSnackbarOpts, handleSnackbarOpen
+            , handleSnackbarClose
+        }}>
             {children}
         </AppContext.Provider >
     )
