@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Axios from 'axios'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
@@ -12,6 +12,7 @@ import CardHeader from '@mui/material/CardHeader'
 import bg from '../assets/bg_login.jpg'
 import { createUser, loginUser } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
+import AppContext from '../context/appContext'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
 
@@ -23,9 +24,13 @@ const defaultUser = {
 
 const Signup = () => {
 
+    const context = useContext(AppContext)
+    const { handleSnackbarOpen } = context
+
     const [user, setUser] = useState(defaultUser)
 
     const navigate = useNavigate()
+
 
     const handleUserId = (e) => {
         setUser({ ...user, id: e.target.value })
@@ -42,8 +47,12 @@ const Signup = () => {
         e.preventDefault()
         console.log(user)
         const res = await createUser(user)
-        if (res) {
-            navigate('/login')
+        if (res.status === 200) {
+            handleSnackbarOpen('User created successfully. You will be redirected to login page now')
+            setTimeout(() => navigate('/login'), 2000)
+        }
+        else {
+            handleSnackbarOpen(res.data)
         }
 
     }
