@@ -60,17 +60,18 @@ export default function Navbar() {
                     >
                         {darkMode ? <LightMode /> : <DarkMode />}
                     </IconButton>
-                    <IconButton
+                    <Button
                         size="large"
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
                         // onClick={handleMenu}
                         color="inherit"
+                        sx={{ textTransform: 'none' }}
                     >
                         <AccountCircle />
                         <Typography marginX={1}>{user.id ? user.id : "Guest"}</Typography>
-                    </IconButton>
+                    </Button>
                     {/* <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}

@@ -14,7 +14,7 @@ const Sidebar = (props) => {
         logoutUser()
         handleSnackbarOpen('You have been logged out. The page will now refresh')
         setTimeout(() => {
-            window.location.reload()
+            window.location.replace('/')
         }, 2000)
     }
     return (
