@@ -19,7 +19,7 @@ import AppContext from '../context/appContext'
 
 const Login = () => {
     const context = useContext(AppContext)
-    const { fetchUserData } = context
+    const { fetchUserData, handleSnackbarOpen } = context
 
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
@@ -38,9 +38,12 @@ const Login = () => {
         e.preventDefault()
         const user = { id: userId, password: password }
         const res = await loginUser(user)
-        if (res) {
+        if (res.status === 200) {
             fetchUserData()
             navigate('/')
+        }
+        else {
+            handleSnackbarOpen('User ID or Password is wrong')
         }
 
     }

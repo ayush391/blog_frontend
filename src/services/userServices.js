@@ -14,12 +14,17 @@ export const createUser = async (user) => {
 }
 export const loginUser = async (user) => {
     const url = baseURL + '/user/login'
-    const response = await axios.post(url, user)
+    const config = { validateStatus: () => true, }
+    const response = await axios.post(url, user, config)
     if (response.status === 200) {
         localStorage.setItem('jwt_token', response.data.token)
-        return true
     }
-    return false
+    return response
+}
+
+export const logoutUser = async () => {
+    localStorage.removeItem('jwt_token')
+
 }
 export const getUser = async () => {
     const url = baseURL + '/user/getuser'

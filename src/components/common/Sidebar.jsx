@@ -1,10 +1,22 @@
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { ArticleRounded, CreateRounded, LoginRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import AppContext from '../../context/appContext';
+import { logoutUser } from '../../services/userServices';
 
 const Sidebar = (props) => {
+    const context = useContext(AppContext)
+    const { user, handleSnackbarOpen } = context
+
+    const handleLogout = () => {
+        logoutUser()
+        handleSnackbarOpen('You have been logged out. The page will now refresh')
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000)
+    }
     return (
         <SwipeableDrawer
             anchor='left'
@@ -35,12 +47,19 @@ const Sidebar = (props) => {
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
-                        <ListItemButton component={Link} to='/login'>
+                        {user.id ? <ListItemButton onClick={handleLogout}>
                             <ListItemIcon>
                                 <LoginRounded></LoginRounded>
                             </ListItemIcon>
-                            <ListItemText primary='Login' />
+                            <ListItemText primary='Logout' />
                         </ListItemButton>
+                            :
+                            <ListItemButton component={Link} to='/login'>
+                                <ListItemIcon>
+                                    <LoginRounded></LoginRounded>
+                                </ListItemIcon>
+                                <ListItemText primary='Login' />
+                            </ListItemButton>}
                     </ListItem>
                 </List>
 
