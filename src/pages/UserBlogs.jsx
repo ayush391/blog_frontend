@@ -23,7 +23,7 @@ const UserBlogs = () => {
     useEffect(() => {
         userBlogs(userId, setBlogs)
         setAllowEdit(user.id == userId)
-    }, [user.id, userId])
+    }, [user, userId])
 
     useEffect(() => { document.title = 'User Blogs - Blog App' }, [])
 

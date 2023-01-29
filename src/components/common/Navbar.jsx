@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Sidebar from './Sidebar';
-import { AccountCircle, Brightness1Rounded, Brightness5Rounded, DarkMode, LightMode } from '@mui/icons-material';
+import { AccountCircle, Brightness1Rounded, Brightness5Rounded, DarkMode, Edit, LightMode } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useContext } from 'react';
@@ -50,16 +50,24 @@ export default function Navbar() {
                         </Typography>
                     </Box>
 
-                    <IconButton
-                        size="large"
+                    <Button
+                        variant='outlined'
+                        size="small"
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
-                        onClick={toggleDarkMode}
-                        color="inherit"
+                        // onClick={handleMenu}
+                        color="secondary"
+                        LinkComponent={Link}
+                        to='/addblog/'
+                        sx={{ textTransform: 'none' }}
                     >
-                        {darkMode ? <LightMode /> : <DarkMode />}
-                    </IconButton>
+                        <Edit />
+
+                        <Typography marginX={1}>
+                            Create
+                        </Typography>
+                    </Button>
                     <Button
                         size="large"
                         aria-label="account of current user"
@@ -84,6 +92,16 @@ export default function Navbar() {
                         }
                     </Button>
 
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={toggleDarkMode}
+                        color="inherit"
+                    >
+                        {darkMode ? <LightMode /> : <DarkMode />}
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </Box>

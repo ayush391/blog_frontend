@@ -1,4 +1,4 @@
-import { Delete, Edit } from '@mui/icons-material'
+import { ArrowForward, ArrowForwardIosOutlined, ArrowForwardIosRounded, ArrowRight, Delete, Edit } from '@mui/icons-material'
 import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box, CardActions, Button, Chip } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
@@ -36,7 +36,10 @@ const Post = (props) => {
             <Box sx={{ padding: '0.1rem', display: 'flex', flexDirection: 'column' }}>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: 'violet' }} aria-label="recipe">
+                        <Avatar component={Link}
+                            to={'/user/' + props.blog.userId}
+                            sx={{ bgcolor: 'violet', textDecoration: 'none' }}
+                        >
                             {props.blog.userId[0].toUpperCase()}
                         </Avatar>
                     }
@@ -48,9 +51,20 @@ const Post = (props) => {
                 />
 
                 <CardContent >
-                    <Typography variant='caption'>
-                        {props.blog.blogSummary}
-                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <Typography variant='caption'>
+                            {props.blog.blogSummary}
+                        </Typography>
+                        <Button variant='normal' size='small' component={Link} to={'/blog/' + props.blog._id}
+                            sx={{
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            Read More
+                            <ArrowForwardIosRounded fontSize='smaller' />
+                        </Button>
+                    </Box>
+
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
                         <Chip
                             label={props.blog.category}
@@ -65,7 +79,6 @@ const Post = (props) => {
             <CardMedia
                 component='img'
                 image={props.blog.blogImg ? props.blog.blogImg : default_blog_img}
-
                 sx={{
                     display: { xs: 'none', sm: 'block' },
                     width: '250px',
@@ -73,10 +86,11 @@ const Post = (props) => {
 
                 }}
             />
-            {props.editable ? (<CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Button fullWidth component={Link} to={'/editblog/' + props.blog['_id']} color='warning'><Edit />Edit</Button>
-                <Button fullWidth component={Link} onClick={handleRemove} color='danger'><Delete />Remove</Button>
-            </CardActions>) : null
+            {
+                props.editable ? (<CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button fullWidth component={Link} to={'/editblog/' + props.blog['_id']} color='warning'><Edit />Edit</Button>
+                    <Button fullWidth component={Link} onClick={handleRemove} color='danger'><Delete />Remove</Button>
+                </CardActions>) : null
             }
         </Card >
     )
