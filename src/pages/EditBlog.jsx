@@ -5,7 +5,7 @@ import { convertToHTML } from 'draft-convert';
 import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button, Snackbar, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 import SunEditor, { buttonList } from 'suneditor-react';
-// import 'suneditor/dist/css/suneditor.min.css';
+import 'suneditor/dist/css/suneditor.min.css';
 import { postBlog, getBlog, updateBlog, getCategories } from '../services/blogServices';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useContext } from 'react';

@@ -5,7 +5,7 @@ import { convertToHTML } from 'draft-convert';
 import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar } from '@mui/material';
 
 import SunEditor, { buttonList } from 'suneditor-react';
-// import 'suneditor-react/dist/css/suneditor.min.css';
+import 'suneditor/dist/css/suneditor.min.css';
 import { getCategories, postBlog } from '../services/blogServices';
 import { useContext } from 'react';
 import AppContext from '../context/appContext';
