@@ -36,10 +36,10 @@ export default function Navbar() {
                         aria-label="open drawer"
                         sx={{
                             mr: 2,
-                            display: {
-                                sx: 'block',
-                                md: 'none'
-                            }
+                            // display: {
+                            //     sx: 'block',
+                            //     md: 'none'
+                            // }
                         }}
                         onClick={toggleSidebar}
                     >

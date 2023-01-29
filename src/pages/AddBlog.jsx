@@ -21,7 +21,7 @@ const initialBlog = {
 const AddBlog = () => {
 
     const context = useContext(AppContext)
-    const { user } = context
+    const { user, handleSnackbarOpen, handleSnackbarClose } = context
 
     const [blog, setBlog] = useState(initialBlog)
     const [categories, setCategories] = useState([])
@@ -66,8 +66,8 @@ const AddBlog = () => {
         setBlog((blog) => ({ ...blog, blogDesc: editorContents }))
     }
 
-    const handleSubmit = () => {
-        const status = postBlog(blog)
+    const handleSubmit = async () => {
+        const status = await postBlog(blog)
         if (status == 200) {
             handleSnackbarOpen("Changes been saved")
         }
@@ -76,14 +76,7 @@ const AddBlog = () => {
         }
     }
 
-    const [snackbarOpts, setSnackbarOpts] = useState({ open: false, message: 'Changes Saved' })
 
-    const handleSnackbarOpen = (message) => {
-        setSnackbarOpts({ open: true, message })
-    }
-    const handleSnackbarClose = () => {
-        setSnackbarOpts({ ...snackbarOpts, open: false })
-    }
     return (
         <Container maxWidth="md">
             <Card sx={{ padding: '1rem', borderRadius: '20px' }}>
@@ -168,12 +161,7 @@ const AddBlog = () => {
                     </Box>
                 </CardContent>
             </Card>
-            <Snackbar
-                open={snackbarOpts.open}
-                message={snackbarOpts.message}
-                autoHideDuration={3000}
-                onClose={handleSnackbarClose}
-            />
+
         </Container>
     )
 }

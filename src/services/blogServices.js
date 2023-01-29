@@ -45,7 +45,12 @@ export const getBlog = async (blogId) => {
 
 export const removeBlog = async (blogId) => {
     const url = baseURL + '/blog' + '/remove' + `/${blogId}`
-    const response = await axios.delete(url)
+    const config = {
+        headers: {
+            'auth-token': localStorage.getItem('jwt_token')
+        }
+    }
+    const response = await axios.delete(url, config)
     return response.status
 }
 export const getCategories = async () => {
