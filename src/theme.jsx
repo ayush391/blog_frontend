@@ -22,7 +22,7 @@ const appTheme = {
             light: '#FFE15D',
             main: '#FFEA20',
             dark: '#F49D1A',
-            contrastText: '#fff',
+            contrastText: '#000',
         },
         mode: 'dark'
     },

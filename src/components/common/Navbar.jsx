@@ -67,10 +67,21 @@ export default function Navbar() {
                         aria-haspopup="true"
                         // onClick={handleMenu}
                         color="inherit"
+                        LinkComponent={Link}
+                        to={user.id ? '/user/' + user.id : '/login'}
                         sx={{ textTransform: 'none' }}
                     >
                         <AccountCircle />
-                        <Typography marginX={1}>{user.id ? user.id : "Guest"}</Typography>
+                        {
+                            user.id ?
+                                <Typography marginX={1}>
+                                    {user.id}
+                                </Typography>
+                                :
+                                <Typography marginX={1}>
+                                    {"Login"}
+                                </Typography>
+                        }
                     </Button>
                     {/* <Menu
                         id="menu-appbar"

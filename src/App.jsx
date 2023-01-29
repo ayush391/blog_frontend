@@ -14,6 +14,7 @@ import appTheme from "./theme";
 import { useMemo } from "react";
 import Signup from "./pages/Signup";
 import EditBlog from "./pages/EditBlog";
+import UserBlogs from "./pages/UserBlogs";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/blog/:blogId" element={<BlogPage />}></Route>
             <Route path="/addblog" element={<AddBlog />}></Route>
             <Route path="/editblog/:blogId" element={<EditBlog />}></Route>
+            <Route path="/user/:userId" element={<UserBlogs />}></Route>
           </Routes>
           <Snackbar
             open={snackbarOpts.open}

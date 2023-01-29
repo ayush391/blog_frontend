@@ -73,9 +73,9 @@ const Post = (props) => {
 
                 }}
             />
-            {props.editable ? (<CardActions>
-                <Button component={Link} to={'/editblog/' + props.blog['_id']} color='warning'><Edit />Edit</Button>
-                <Button component={Link} onClick={handleRemove} color='danger'><Delete />Remove</Button>
+            {props.editable ? (<CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Button fullWidth component={Link} to={'/editblog/' + props.blog['_id']} color='warning'><Edit />Edit</Button>
+                <Button fullWidth component={Link} onClick={handleRemove} color='danger'><Delete />Remove</Button>
             </CardActions>) : null
             }
         </Card >

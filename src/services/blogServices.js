@@ -2,6 +2,18 @@ import axios from "axios"
 
 const baseURL = import.meta.env.VITE_BASE_URL
 
+export const fetchAllBlogs = async (set) => {
+    const url = import.meta.env.VITE_BASE_URL + '/blog/fetchall'
+    const response = await axios.get(url)
+    set(response.data)
+}
+
+export const userBlogs = async (id, set) => {
+    const url = import.meta.env.VITE_BASE_URL + '/blog/userid/' + id
+    const response = await axios.get(url)
+    set(response.data)
+}
+
 export const postBlog = async (blog) => {
     const url = baseURL + '/blog' + '/create'
     const config = {
