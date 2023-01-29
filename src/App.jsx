@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import Signup from "./pages/Signup";
 import EditBlog from "./pages/EditBlog";
 import UserBlogs from "./pages/UserBlogs";
+import Content from "./components/common/Content";
 
 
 function App() {
@@ -40,21 +41,23 @@ function App() {
         <CssBaseline enableColorScheme />
         <HashRouter>
           <Navbar />
-          <Routes>
-            <Route path="" element={<Dashboard />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<Signup />}></Route>
-            <Route path="/blog/:blogId" element={<BlogPage />}></Route>
-            <Route path="/addblog" element={<AddBlog />}></Route>
-            <Route path="/editblog/:blogId" element={<EditBlog />}></Route>
-            <Route path="/user/:userId" element={<UserBlogs />}></Route>
-          </Routes>
-          <Snackbar
-            open={snackbarOpts.open}
-            message={snackbarOpts.message}
-            autoHideDuration={3000}
-            onClose={handleSnackbarClose}
-          />
+          <Content>
+            <Routes>
+              <Route path="" element={<Dashboard />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<Signup />}></Route>
+              <Route path="/blog/:blogId" element={<BlogPage />}></Route>
+              <Route path="/addblog" element={<AddBlog />}></Route>
+              <Route path="/editblog/:blogId" element={<EditBlog />}></Route>
+              <Route path="/user/:userId" element={<UserBlogs />}></Route>
+            </Routes>
+            <Snackbar
+              open={snackbarOpts.open}
+              message={snackbarOpts.message}
+              autoHideDuration={3000}
+              onClose={handleSnackbarClose}
+            />
+          </Content>
         </HashRouter>
       </ThemeProvider>
     </>

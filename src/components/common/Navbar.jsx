@@ -27,14 +27,20 @@ export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Sidebar open={openSidebar} toggleDrawer={toggleSidebar} />
-            <AppBar position="static" color='transparent' elevation={0}>
+            <AppBar position="fixed" color='transparent' elevation={0}>
                 <Toolbar>
                     <IconButton
                         size="large"
                         edge="start"
                         color="text.primary"
                         aria-label="open drawer"
-                        sx={{ mr: 2 }}
+                        sx={{
+                            mr: 2,
+                            display: {
+                                sx: 'block',
+                                md: 'none'
+                            }
+                        }}
                         onClick={toggleSidebar}
                     >
                         <MenuIcon />
@@ -65,7 +71,7 @@ export default function Navbar() {
                             <Edit />
 
                             <Typography marginX={1}>
-                                Create
+                                Write
                             </Typography>
                         </Button>
                         <Button
