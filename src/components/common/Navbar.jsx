@@ -39,59 +39,60 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Box component={Link} to='/' sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, textDecoration: 'none' }}
+                    <Box component={Link} to='/' sx={{ flexGrow: 1, textDecoration: 'none', textAlign: { xs: 'center', md: 'left' } }}
                     >
                         <Typography
-                            variant="h6"
+                            variant="h5"
                             noWrap
-
                         >
                             Blog App
                         </Typography>
                     </Box>
 
-                    <Button
-                        variant='outlined'
-                        size="small"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        // onClick={handleMenu}
-                        color="secondary"
-                        LinkComponent={Link}
-                        to='/addblog/'
-                        sx={{ textTransform: 'none' }}
-                    >
-                        <Edit />
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <Button
+                            variant='outlined'
+                            size="small"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            // onClick={handleMenu}
+                            color="secondary"
+                            LinkComponent={Link}
+                            to='/addblog/'
+                            sx={{ textTransform: 'none' }}
+                        >
+                            <Edit />
 
-                        <Typography marginX={1}>
-                            Create
-                        </Typography>
-                    </Button>
-                    <Button
-                        size="large"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        // onClick={handleMenu}
-                        color="inherit"
-                        LinkComponent={Link}
-                        to={user.id ? '/user/' + user.id : '/login'}
-                        sx={{ textTransform: 'none' }}
-                    >
-                        <AccountCircle />
-                        {
-                            user.id ?
-                                <Typography marginX={1}>
-                                    {user.id}
-                                </Typography>
-                                :
-                                <Typography marginX={1}>
-                                    {"Login"}
-                                </Typography>
-                        }
-                    </Button>
+                            <Typography marginX={1}>
+                                Create
+                            </Typography>
+                        </Button>
+                        <Button
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            // onClick={handleMenu}
+                            color="inherit"
+                            LinkComponent={Link}
+                            to={user.id ? '/user/' + user.id : '/login'}
+                            sx={{ textTransform: 'none' }}
+                        >
+                            <AccountCircle />
+                            {
+                                user.id ?
+                                    <Typography marginX={1}>
+                                        {user.id}
+                                    </Typography>
+                                    :
+                                    <Typography marginX={1}>
+                                        {"Login"}
+                                    </Typography>
+                            }
+                        </Button>
 
+                    </Box>
                     <IconButton
                         size="large"
                         aria-label="account of current user"
