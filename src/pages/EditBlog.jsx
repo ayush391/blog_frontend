@@ -7,7 +7,7 @@ import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, Tex
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
 import { postBlog, getBlog, updateBlog, getCategories } from '../services/blogServices';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import AppContext from '../context/appContext';
 
@@ -20,6 +20,12 @@ let initialBlog = {
 
 const EditBlog = () => {
     const params = useParams()
+    const context = useContext(AppContext)
+    const { user, handleSnackbarOpen } = context
+
+
+    const navigate = useNavigate()
+
 
     const fetchBlog = async (id) => {
         const response = await getBlog(id)
@@ -32,10 +38,18 @@ const EditBlog = () => {
         console.log(response)
     }
 
+
     useEffect(() => {
-        fetchBlog(params.blogId)
-        fetchCategories()
-    }, [])
+        //redirect if not logged in
+        if (user.id) {
+            fetchBlog(params.blogId)
+            fetchCategories()
+        }
+        else {
+            navigate('/login')
+        }
+
+    }, [user])
 
     //categories
     const [categories, setCategories] = useState([])
@@ -77,10 +91,6 @@ const EditBlog = () => {
         }
 
     }
-
-    //snackbar 
-    const context = useContext(AppContext)
-    const { handleSnackbarOpen } = context
 
     return (
         <Container maxWidth="md">

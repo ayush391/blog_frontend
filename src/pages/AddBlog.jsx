@@ -7,6 +7,9 @@ import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, Tex
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
 import { getCategories, postBlog } from '../services/blogServices';
+import { useContext } from 'react';
+import AppContext from '../context/appContext';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const initialBlog = {
     blogTitle: '',
@@ -17,8 +20,15 @@ const initialBlog = {
 }
 
 const AddBlog = () => {
+
+    const context = useContext(AppContext)
+    const { user } = context
+
     const [blog, setBlog] = useState(initialBlog)
     const [categories, setCategories] = useState([])
+
+    const navigate = useNavigate()
+
 
     const fetchCategories = async () => {
         const response = await getCategories()
@@ -26,8 +36,13 @@ const AddBlog = () => {
         console.log(response)
     }
     useEffect(() => {
-        fetchCategories()
-    }, [])
+        if (user.id) {
+            fetchCategories()
+        }
+        else {
+            navigate('/login')
+        }
+    }, [user])
 
     const handleTitle = (e) => {
         console.log(blog)

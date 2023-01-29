@@ -8,14 +8,14 @@ import { logoutUser } from '../../services/userServices';
 
 const Sidebar = (props) => {
     const context = useContext(AppContext)
-    const { user, handleSnackbarOpen } = context
+    const { user, handleSnackbarOpen, setUser } = context
 
     const handleLogout = () => {
-        logoutUser()
-        handleSnackbarOpen('You have been logged out. The page will now refresh')
-        setTimeout(() => {
-            window.location.replace('/')
-        }, 2000)
+        logoutUser(setUser)
+        handleSnackbarOpen('You have been logged out.')
+        // setTimeout(() => {
+        //     window.location.replace('/')
+        // }, 2000)
     }
     return (
         <SwipeableDrawer

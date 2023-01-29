@@ -45,8 +45,8 @@ const AppProvider = ({ children }) => {
 
     return (
         <AppContext.Provider value={{
-            darkMode, toggleDarkMode, user, fetchUserData, snackbarOpts, setSnackbarOpts, handleSnackbarOpen
-            , handleSnackbarClose
+            darkMode, toggleDarkMode, user, setUser, fetchUserData, snackbarOpts, setSnackbarOpts, handleSnackbarOpen
+            , handleSnackbarClose,
         }}>
             {children}
         </AppContext.Provider >

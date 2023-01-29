@@ -22,8 +22,9 @@ export const loginUser = async (user) => {
     return response
 }
 
-export const logoutUser = async () => {
+export const logoutUser = async (setUser) => {
     localStorage.removeItem('jwt_token')
+    setUser({})
 }
 export const getUser = async () => {
     const url = baseURL + '/user/getuser'
@@ -37,4 +38,5 @@ export const getUser = async () => {
         return response
     }
 }
+
 
