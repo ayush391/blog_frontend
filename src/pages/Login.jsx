@@ -11,9 +11,10 @@ import CardHeader from '@mui/material/CardHeader'
 
 import bg from '../assets/bg_login.jpg'
 import { loginUser } from '../services/userServices'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import AppContext from '../context/appContext'
+import { Typography } from '@mui/material'
 
 // const bg = "https://source.unsplash.com/random/1280x720?purple"
 
@@ -53,7 +54,7 @@ const Login = () => {
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: '100vh' }}>
             <Container maxWidth='xs'>
                 <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1rem', borderRadius: '20px' }}>
-                    <CardContent>
+                    <CardContent sx={{ textAlign: 'center' }}>
                         <CardHeader
                             title="Login"
                             subheader="to post and view blogs"
@@ -84,9 +85,20 @@ const Login = () => {
                         >
 
                         </TextField>
-                        <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' sx={{ borderRadius: '20px', marginTop: '2rem' }}>
+                        <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' sx={{ borderRadius: '20px', margin: '2rem 0rem' }}>
                             Login
                         </Button>
+
+                        <Typography
+                            color='danger'
+                            component={Link}
+                            to='/signup'
+                            disableElevation
+                            fullWidth
+                            variant='contained'
+                            sx={{ borderRadius: '20px', marginTop: '2rem' }}>
+                            Click here to Register
+                        </Typography>
                     </CardContent>
                 </Card>
             </Container>
