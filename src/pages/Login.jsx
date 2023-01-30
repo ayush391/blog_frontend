@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
 import Container from '@mui/material/Container'
-import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'

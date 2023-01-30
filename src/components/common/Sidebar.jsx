@@ -1,4 +1,4 @@
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
 
 import React, { useContext } from 'react'
 import { AccountCircle, ArticleRounded, CreateRounded, FileCopy, LoginRounded } from '@mui/icons-material';

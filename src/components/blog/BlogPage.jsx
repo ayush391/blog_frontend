@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardHeader, Container, Skeleton, Typography } from '@mui/material'
+import { Avatar, Box, Card, Container, Skeleton, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getBlog } from '../../services/blogServices'

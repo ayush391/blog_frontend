@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Container from '@mui/material/Container'
 
-import { Box, Card, Typography, CardHeader, Avatar, IconButton, CardContent, TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar } from '@mui/material';
+import { Box, Card, CardHeader, Avatar, CardContent, TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar } from '@mui/material';
 
 import SunEditor, { buttonList } from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css';
 import { getCategories, postBlog } from '../services/blogServices';
 import { useContext } from 'react';
 import AppContext from '../context/appContext';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const initialBlog = {
     blogTitle: '',

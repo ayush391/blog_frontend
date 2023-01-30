@@ -1,9 +1,9 @@
-import { Box, Card, Container, Typography } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+
 import Post from '../components/blog/Post'
+import PageSkeleton from '../components/blog/skeletons/page/PageSkeleton'
 
 
 const Dashboard = () => {
@@ -21,13 +21,15 @@ const Dashboard = () => {
     return (
         <Container maxWidth='md'>
 
-            {blogs.map((blog) => {
+            {blogs.length ? blogs.map((blog) => {
                 return (
                     <Box key={blog['_id']} to={'/blog/' + blog['_id']} sx={{ textDecoration: 'none' }}>
                         <Post blog={blog} />
                     </Box>
                 )
-            })}
+            }) :
+                <PageSkeleton />
+            }
 
         </Container>
     )

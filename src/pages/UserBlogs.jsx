@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import Post from '../components/blog/Post'
+import PageSkeleton from '../components/blog/skeletons/page/PageSkeleton'
 import AppContext from '../context/appContext'
 import { userBlogs } from '../services/blogServices'
 
@@ -30,13 +31,15 @@ const UserBlogs = () => {
     return (
         <Container maxWidth='md'>
 
-            {blogs.map((blog) => {
+            {blogs.length ? blogs.map((blog) => {
                 return (
                     <Box key={blog['_id']} to={'/blog/' + blog['_id']} sx={{ textDecoration: 'none' }}>
                         <Post blog={blog} editable={allowEdit} />
                     </Box>
                 )
-            })}
+            }) :
+                <PageSkeleton />
+            }
 
         </Container>
     )

@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/common/Navbar";
 import BlogPage from "./components/blog/BlogPage";
 import AddBlog from "./pages/AddBlog";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AppContext from "./context/appContext";
 import appTheme from "./theme";
 import { useMemo } from "react";

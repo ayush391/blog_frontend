@@ -1,4 +1,4 @@
-import { ArrowForward, ArrowForwardIosOutlined, ArrowForwardIosRounded, ArrowRight, Delete, Edit } from '@mui/icons-material'
+import { ArrowForwardIosRounded, Delete, Edit } from '@mui/icons-material'
 import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography, Box, CardActions, Button, Chip } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
@@ -12,7 +12,7 @@ import { removeBlog } from '../../services/blogServices'
 
 const Post = (props) => {
     const context = useContext(AppContext)
-    const { blogs, handleSnackbarOpen } = context
+    const { handleSnackbarOpen } = context
 
     const [removed, setRemoved] = useState(false)
     const handleRemove = async () => {
