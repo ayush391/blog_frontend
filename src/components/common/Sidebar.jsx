@@ -47,12 +47,16 @@ const Sidebar = (props) => {
                         </ListItemButton>
                     </ListItem>
                     {
-                        user.id ? <ListItemButton component={Link} to={user.id ? '/user/' + user.id : '/login'}>
-                            <ListItemIcon>
-                                <FileCopy />
-                            </ListItemIcon>
-                            <ListItemText primary='My Blogs' />
-                        </ListItemButton> : null
+                        user.id ?
+                            <ListItemButton component={Link} to={user.id ? '/user/' + user.id : '/login'}>
+                                <ListItemIcon>
+                                    <FileCopy />
+                                </ListItemIcon>
+                                <ListItemText primary='My Blogs' />
+                            </ListItemButton>
+
+
+                            : null
                     }
                     <ListItem disablePadding>
                         {user.id ? <ListItemButton onClick={handleLogout}>
@@ -76,6 +80,12 @@ const Sidebar = (props) => {
                             <AccountCircle />
                         </ListItemIcon>
                         <ListItemText primary={user.id ? user.id : 'Guest'} />
+                    </ListItemButton>
+                    <ListItemButton component={Link} to={user.id ? '/user/edituser' : ''}>
+                        <ListItemIcon>
+                            <FileCopy />
+                        </ListItemIcon>
+                        <ListItemText primary='Edit Profile' />
                     </ListItemButton>
                 </List>
 
