@@ -1,7 +1,7 @@
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
 
 import React, { useContext } from 'react'
-import { ArticleRounded, CreateRounded, LoginRounded } from '@mui/icons-material';
+import { AccountCircle, ArticleRounded, CreateRounded, FileCopy, LoginRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import AppContext from '../../context/appContext';
 import { logoutUser } from '../../services/userServices';
@@ -35,7 +35,7 @@ const Sidebar = (props) => {
                             <ListItemIcon>
                                 <ArticleRounded></ArticleRounded>
                             </ListItemIcon>
-                            <ListItemText primary='Blogs' />
+                            <ListItemText primary='All Blogs' />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -46,6 +46,14 @@ const Sidebar = (props) => {
                             <ListItemText primary='Write' />
                         </ListItemButton>
                     </ListItem>
+                    {
+                        user.id ? <ListItemButton component={Link} to={user.id ? '/user/' + user.id : '/login'}>
+                            <ListItemIcon>
+                                <FileCopy />
+                            </ListItemIcon>
+                            <ListItemText primary='My Blogs' />
+                        </ListItemButton> : null
+                    }
                     <ListItem disablePadding>
                         {user.id ? <ListItemButton onClick={handleLogout}>
                             <ListItemIcon>
@@ -61,6 +69,14 @@ const Sidebar = (props) => {
                                 <ListItemText primary='Login' />
                             </ListItemButton>}
                     </ListItem>
+                    <hr></hr>
+                    <ListItemButton component={Link} to={user.id ? '/user/' + user.id : '/login'}
+                    >
+                        <ListItemIcon>
+                            <AccountCircle />
+                        </ListItemIcon>
+                        <ListItemText primary={user.id ? user.id : 'Guest'} />
+                    </ListItemButton>
                 </List>
 
             </Box>
