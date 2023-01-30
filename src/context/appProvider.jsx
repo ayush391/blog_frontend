@@ -15,7 +15,7 @@ const AppProvider = ({ children }) => {
     const fetchUserData = async () => {
         if (localStorage.getItem('jwt_token')) {
             const userData = await getUser()
-            if (userData.status == 200) {
+            if (userData.status === 200) {
                 setUser(userData.data.user)
             }
 

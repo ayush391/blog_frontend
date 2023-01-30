@@ -17,6 +17,7 @@ import EditBlog from "./pages/EditBlog";
 import UserBlogs from "./pages/UserBlogs";
 import Content from "./components/common/Content";
 import EditUser from "./pages/EditUser";
+import Footer from "./components/common/Footer";
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
               onClose={handleSnackbarClose}
             />
           </Content>
+          <Footer />
         </HashRouter>
       </ThemeProvider>
     </>

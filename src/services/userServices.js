@@ -41,6 +41,11 @@ export const logoutUser = async (setUser) => {
 export const getUser = async () => {
     const url = baseURL + '/user/getuser'
     const config = {
+        // validateStatus: (status) => {
+        //     if (status === 401) {
+        //         return
+        //     }
+        // },
         headers: {
             'auth-token': localStorage.getItem('jwt_token')
         }
