@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardHeader, Container, Typography } from '@mui/material'
+import { Avatar, Box, Card, CardHeader, Container, Skeleton, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getBlog } from '../../services/blogServices'
@@ -19,27 +19,37 @@ const BlogPage = () => {
         <Container maxWidth='md'>
             <Box marginBottom={2}>
                 <Typography variant='h4' fontWeight='900'>
-                    {blog.blogTitle}
+                    {blog.blogTitle ?
+                        blog.blogTitle :
+                        <Skeleton />
+                    }
                 </Typography>
                 <Typography variant='caption' color='grey'>
-                    {new Date(blog.createdAt).toLocaleString()}
+                    {blog.createdAt ? new Date(blog.createdAt).toLocaleString() :
+                        <Skeleton width={200} />
+                    }
                 </Typography>
-                <Box component='img' src={blog.blogImg}>
-
-                </Box>
+                {
+                    blog.blogImg ?
+                        <Box component='img' src={blog.blogImg} /> :
+                        <Skeleton height={300} />
+                }
             </Box>
-            <Box dangerouslySetInnerHTML={{ '__html': blog.blogDesc }}>
-            </Box >
+            {
+                blog.blogDesc ?
+                    <Box dangerouslySetInnerHTML={{ '__html': blog.blogDesc }} /> :
+                    <Skeleton height={500} />
+            }
             <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '2rem', padding: '1rem 1rem', borderRadius: '20px' }}>
                 <Avatar sx={{ bgcolor: 'violet', marginRight: '0.5rem', width: '4rem', height: '4rem' }}>A</Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', }}>
 
                     <Typography variant='subtitle1' >
-                        Ayush Kapoor
+                        {blog.userId ? blog.userId : <Skeleton width={150} />}
                     </Typography>
 
                     <Typography variant='caption' sx={{ color: '#FFFFFF80' }}>
-                        From Austria; specialised in analysis of contemporary warfare; working as author, illustrator, and book-series-editor for Helion & Co.
+                        {blog.userSummary ? blog.userId : <Skeleton width={200} />}
                     </Typography>
                 </Box >
             </Card >
