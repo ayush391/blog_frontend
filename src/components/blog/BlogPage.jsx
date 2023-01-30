@@ -14,7 +14,10 @@ const BlogPage = () => {
         const data = await getBlog(params.blogId)
         setBlog(data)
     }
-    useEffect(() => { fetchBlog() }, [])
+    useEffect(() => {
+        fetchBlog()
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <Container maxWidth='md'>

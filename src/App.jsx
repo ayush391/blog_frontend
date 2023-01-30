@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/common/Navbar";
 import BlogPage from "./components/blog/BlogPage";
 import AddBlog from "./pages/AddBlog";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "./context/appContext";
 import appTheme from "./theme";
 import { useMemo } from "react";
@@ -23,6 +23,7 @@ function App() {
 
   const context = useContext(AppContext)
   const { snackbarOpts, handleSnackbarOpen, handleSnackbarClose, darkMode } = context
+
 
   const currTheme = useMemo(() => {
     return createTheme(
