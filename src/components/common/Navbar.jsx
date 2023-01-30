@@ -24,7 +24,7 @@ export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Sidebar open={openSidebar} toggleDrawer={toggleSidebar} />
-            <AppBar position="fixed" color='transparent' elevation={0}>
+            <AppBar position="fixed" elevation={0} color='transparent' sx={{ backdropFilter: "blur(5px)" }}>
                 <Toolbar>
                     <IconButton
                         size="large"
