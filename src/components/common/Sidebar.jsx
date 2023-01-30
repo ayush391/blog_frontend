@@ -81,12 +81,12 @@ const Sidebar = (props) => {
                         </ListItemIcon>
                         <ListItemText primary={user.id ? user.id : 'Guest'} />
                     </ListItemButton>
-                    <ListItemButton component={Link} to={user.id ? '/user/edituser' : ''}>
+                    {user.id ? <ListItemButton component={Link} to={user.id ? '/user/edituser' : ''}>
                         <ListItemIcon>
                             <FileCopy />
                         </ListItemIcon>
                         <ListItemText primary='Edit Profile' />
-                    </ListItemButton>
+                    </ListItemButton> : null}
                 </List>
 
             </Box>
