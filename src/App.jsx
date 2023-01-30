@@ -16,6 +16,7 @@ import Signup from "./pages/Signup";
 import EditBlog from "./pages/EditBlog";
 import UserBlogs from "./pages/UserBlogs";
 import Content from "./components/common/Content";
+import EditUser from "./pages/EditUser";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
               <Route path="/addblog" element={<AddBlog />}></Route>
               <Route path="/editblog/:blogId" element={<EditBlog />}></Route>
               <Route path="/user/:userId" element={<UserBlogs />}></Route>
+              <Route path="/user/edituser" element={<EditUser />}></Route>
             </Routes>
             <Snackbar
               open={snackbarOpts.open}

@@ -2,6 +2,7 @@ import { Avatar, Box, Card, Container, Skeleton, Typography } from '@mui/materia
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getBlog } from '../../services/blogServices'
+import UserProfileSmall from '../common/UserProfileSmall'
 
 import style from './style/blogPage.module.css'
 
@@ -40,19 +41,11 @@ const BlogPage = () => {
                     <Box dangerouslySetInnerHTML={{ '__html': blog.blogDesc }} /> :
                     <Skeleton height={500} />
             }
-            <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '2rem', padding: '1rem 1rem', borderRadius: '20px' }}>
-                <Avatar sx={{ bgcolor: 'violet', marginRight: '0.5rem', width: '4rem', height: '4rem' }}>A</Avatar>
-                <Box sx={{ display: 'flex', flexDirection: 'column', }}>
-
-                    <Typography variant='subtitle1' >
-                        {blog.userId ? blog.userId : <Skeleton width={150} />}
-                    </Typography>
-
-                    <Typography variant='caption' sx={{ color: '#FFFFFF80' }}>
-                        {blog.userSummary ? blog.userId : <Skeleton width={200} />}
-                    </Typography>
-                </Box >
-            </Card >
+            <Box sx={{ display: 'flex', flex: 1, justifyContent: 'right' }}>
+                {blog.blogTitle ? <UserProfileSmall userid={blog.userId} /> :
+                    <Skeleton width='100%' height={100} />
+                }
+            </Box>
         </Container >
     )
 }

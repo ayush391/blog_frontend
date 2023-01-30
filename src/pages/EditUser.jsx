@@ -10,7 +10,7 @@ import Button from '@mui/material/Button'
 import CardHeader from '@mui/material/CardHeader'
 
 import bg from '../assets/bg_login.jpg'
-import { createUser, loginUser } from '../services/userServices'
+import { createUser, editUser, getUserInfo, loginUser } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
 import AppContext from '../context/appContext'
 
@@ -23,37 +23,51 @@ const defaultUser = {
     password: ''
 }
 
-const Signup = () => {
+const EditUser = () => {
 
     const context = useContext(AppContext)
-    const { handleSnackbarOpen } = context
+    const { user, handleSnackbarOpen } = context
 
-    const [user, setUser] = useState(defaultUser)
+    const [userInfo, setUserInfo] = useState(defaultUser)
 
     const navigate = useNavigate()
 
 
-    const handleUserId = (e) => {
-        setUser({ ...user, id: e.target.value })
+    const fetchUser = async (userid) => {
+        const response = await getUserInfo(userid)
+        if (response.status === 200) {
+            setUserInfo(response.data)
+        }
     }
 
+
+    useEffect(() => {
+        //redirect if not logged in
+        fetchUser(user.id)
+
+    }, [user])
+
+    // const handleUserId = (e) => {
+    //     setUser({ ...userInfo, id: e.target.value })
+    // }
+
     const handlePassword = (e) => {
-        setUser({ ...user, password: e.target.value })
+        setUserInfo({ ...userInfo, password: e.target.value })
     }
     const handleName = (e) => {
-        setUser({ ...user, name: e.target.value })
+        setUserInfo({ ...userInfo, name: e.target.value })
     }
     const handleSummary = (e) => {
-        setUser({ ...user, summary: e.target.value })
+        setUserInfo({ ...userInfo, summary: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(user)
-        const res = await createUser(user)
+        const res = await editUser(userInfo)
         if (res.status === 200) {
-            handleSnackbarOpen('User created successfully. You will be redirected to login page now')
-            setTimeout(() => navigate('/login'), 2000)
+            handleSnackbarOpen('User updated successfully.')
+            // setTimeout(() => navigate('/user/' + user.id), 2000)
         }
         else {
             handleSnackbarOpen(res.data)
@@ -73,19 +87,20 @@ const Signup = () => {
                             sx={{ textAlign: 'center' }}
                         />
                         <TextField
-                            onChange={handleUserId}
+                            // onChange={handleUserId}
                             value={user.id}
-                            label="User ID"
+                            // label="User ID"
                             variant='outlined'
                             type='text'
                             margin='normal'
                             color='secondary'
+                            focused
                             fullWidth
-
+                            disabled
                         />
                         <TextField
                             onChange={handleName}
-                            value={user.name}
+                            value={userInfo.name}
                             label="Full Name"
                             variant='outlined'
                             type='text'
@@ -96,7 +111,7 @@ const Signup = () => {
                         />
                         <TextField
                             onChange={handleSummary}
-                            value={user.summary}
+                            value={userInfo.summary}
                             label="Bio"
                             variant='outlined'
                             type='text'
@@ -111,7 +126,7 @@ const Signup = () => {
 
                         <TextField
                             onChange={handlePassword}
-                            value={user.password}
+                            value={userInfo.password}
                             label="Password"
                             variant='outlined'
                             type='password'
@@ -123,7 +138,7 @@ const Signup = () => {
 
                         </TextField>
                         <Button onClick={handleSubmit} disableElevation fullWidth variant='contained' sx={{ borderRadius: '20px', marginTop: '2rem' }}>
-                            Create Account
+                            Update
                         </Button>
                     </CardContent>
                 </Card>
@@ -134,4 +149,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default EditUser

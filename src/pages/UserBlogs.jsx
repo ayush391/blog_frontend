@@ -15,6 +15,7 @@ const UserBlogs = () => {
     const { user } = context
 
     const [blogs, setBlogs] = useState([])
+    const [empty, setEmpty] = useState(false)
     const [allowEdit, setAllowEdit] = useState(false)
     const params = useParams()
 
@@ -22,7 +23,8 @@ const UserBlogs = () => {
 
 
     useEffect(() => {
-        userBlogs(userId, setBlogs)
+        const res = userBlogs(userId, setBlogs)
+        setEmpty(res)
         setAllowEdit(user.id == userId)
     }, [user, userId])
 
@@ -37,8 +39,9 @@ const UserBlogs = () => {
                         <Post blog={blog} editable={allowEdit} />
                     </Box>
                 )
-            }) :
+            }) : (empty ? <Typography variant='h5' textAlign='center'>No blogs to show 😔</Typography> :
                 <PageSkeleton />
+            )
             }
 
         </Container>

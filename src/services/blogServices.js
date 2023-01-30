@@ -11,7 +11,10 @@ export const fetchAllBlogs = async (set) => {
 export const userBlogs = async (id, set) => {
     const url = import.meta.env.VITE_BASE_URL + '/blog/userid/' + id
     const response = await axios.get(url)
-    set(response.data)
+    if (response.status == 200) {
+        set(response.data)
+    }
+    return response.status === 200
 }
 
 export const postBlog = async (blog) => {
