@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
@@ -30,7 +30,9 @@ const Dashboard = () => {
             }) :
                 <PageSkeleton />
             }
-
+            <Typography variant='caption' color='grey' textAlign='center' display='block' sx={{ padding: '5rem' }}>
+                Nothing more to show 🥹
+            </Typography>
         </Container>
     )
 }

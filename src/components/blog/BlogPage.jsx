@@ -28,7 +28,7 @@ const BlogPage = () => {
                         <Skeleton />
                     }
                 </Typography>
-                <Typography variant='caption' color='grey'>
+                <Typography variant='caption' color='grey' display='block'>
                     {blog.createdAt ? new Date(blog.createdAt).toLocaleString() :
                         <Skeleton width={200} />
                     }
