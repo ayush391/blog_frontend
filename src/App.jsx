@@ -38,6 +38,7 @@ function App() {
     )
   }, [darkMode])
 
+
   return (
     <>
       <ThemeProvider theme={currTheme}>
