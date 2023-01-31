@@ -61,6 +61,9 @@ function App() {
               message={snackbarOpts.message}
               autoHideDuration={3000}
               onClose={handleSnackbarClose}
+              sx={{
+                zIndex: '20'
+              }}
             />
           </Content>
           <Footer />

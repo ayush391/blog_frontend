@@ -7,7 +7,8 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CardHeader from '@mui/material/CardHeader'
 
-import bg from '../assets/bg_login.jpg'
+// import bg from '../assets/bg_login.jpg'
+import bg from '../assets/blog_bg_new.jpg'
 import { loginUser } from '../services/userServices'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
@@ -100,7 +101,7 @@ const Login = () => {
                     </CardContent>
                 </Card>
             </Container>
-            <Box component='img' src={bg} sx={{ display: { xs: 'none', lg: 'block' }, width: '80vw', height: '100%', overflow: 'hidden', backgroundPosition: '50% 50%' }} />
+            <Box component='img' src={bg} sx={{ position: 'absolute', width: '100%', height: '120vh', overflow: 'hidden', top: '0', objectFit: 'cover', zIndex: '-20' }} />
 
         </Box >
     )

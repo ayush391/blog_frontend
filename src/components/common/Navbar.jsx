@@ -46,6 +46,7 @@ export default function Navbar() {
                     >
                         <Typography
                             variant="h5"
+                            fontWeight='bolder'
                             noWrap
                         >
                             Blog App
